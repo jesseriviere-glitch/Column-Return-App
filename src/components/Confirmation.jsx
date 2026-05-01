@@ -58,23 +58,23 @@ const Confirmation = ({ data, onSuccess, onCancel }) => {
   return (
     <div className="confirmation-container">
       <div className="confirmation-content">
-        <h3>Scanned Successfully</h3>
+        <h3>SCANNED SUCCESSFULLY</h3>
         
         <div className="data-card">
-          <span className="data-label">Serial Number</span>
+          <span className="data-label">SERIAL NUMBER</span>
           <span className="data-value">{data}</span>
         </div>
 
         {submitStatus === 'error' && (
           <div className="error-message">
-            Failed to submit to database. Please try again.
+            FAILED TO SUBMIT TO DATABASE. PLEASE TRY AGAIN.
           </div>
         )}
 
         {submitStatus === 'success' ? (
           <div className="success-state">
             <CheckCircle size={64} className="success-icon" />
-            <p>Logged to In House Log</p>
+            <p>LOGGED TO IN HOUSE LOG</p>
           </div>
         ) : (
           <div className="action-buttons">
@@ -84,7 +84,7 @@ const Confirmation = ({ data, onSuccess, onCancel }) => {
               disabled={isSubmitting}
             >
               <XCircle size={20} />
-              <span>Cancel</span>
+              <span>CANCEL</span>
             </button>
             <button 
               className="primary-button" 
@@ -96,7 +96,7 @@ const Confirmation = ({ data, onSuccess, onCancel }) => {
               ) : (
                 <CheckCircle size={20} />
               )}
-              <span>{isSubmitting ? 'Submitting...' : 'Confirm'}</span>
+              <span>{isSubmitting ? 'SUBMITTING...' : 'CONFIRM'}</span>
             </button>
           </div>
         )}
