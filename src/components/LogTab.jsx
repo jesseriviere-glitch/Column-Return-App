@@ -78,7 +78,14 @@ const LogTab = ({ sessionLog }) => {
                     <span className="log-serial">{item.serialNumber}</span>
                     {isSession && <span className="session-badge">JUST ADDED</span>}
                   </div>
-                  <span className="log-date">{item.receiptDate}</span>
+                  <div className="log-item-details" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <span className="log-date">{item.receiptDate}</span>
+                    {item.traxNumber && (
+                      <span className="log-trax" style={{ fontSize: '0.85rem', color: '#00f2fe', fontWeight: '500' }}>
+                        TRAX: {item.traxNumber}
+                      </span>
+                    )}
+                  </div>
                 </div>
               );
             })}
