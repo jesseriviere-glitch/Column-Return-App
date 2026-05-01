@@ -1,0 +1,1 @@
+if('serviceWorker' in navigator) {window.addEventListener('load', () => {navigator.serviceWorker.register('/Column-Return-App/sw.js', { scope: '/Column-Return-App/' })})}
