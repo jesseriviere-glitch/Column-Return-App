@@ -15,8 +15,8 @@ export default defineConfig({
         name: 'Metafix Column Return',
         short_name: 'Metafix Return',
         description: 'Lean tool for warehouse technicians to log returned filter columns.',
-        theme_color: '#376452',
-        background_color: '#ffffff',
+        theme_color: '#050907',
+        background_color: '#050907',
         display: 'standalone',
         icons: [
           {
