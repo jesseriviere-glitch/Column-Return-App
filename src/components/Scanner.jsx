@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect, useCallback } from 'react';
 import Tesseract from 'tesseract.js';
 import { X, Loader } from 'lucide-react';
 
-const Scanner = ({ onSuccess, onCancel }) => {
+const Scanner = ({ onSuccess, onCancel, sessionLog }) => {
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
   const [isProcessing, setIsProcessing] = useState(false);
@@ -77,6 +77,14 @@ const Scanner = ({ onSuccess, onCancel }) => {
 
       if (match) {
         const serialNumber = match[0];
+        
+        // Duplicate check
+        if (sessionLog && sessionLog.includes(serialNumber)) {
+          setError("DUPLICATE: ALREADY SCANNED THIS SESSION");
+          setIsProcessing(false);
+          return;
+        }
+
         // Stop stream before success
         if (stream) {
           stream.getTracks().forEach(track => track.stop());
@@ -92,7 +100,7 @@ const Scanner = ({ onSuccess, onCancel }) => {
       setError("Failed to process image. Please try again.");
       setIsProcessing(false);
     }
-  }, [isProcessing, onSuccess, stream]);
+  }, [isProcessing, onSuccess, stream, sessionLog]);
 
   const handleCancel = () => {
     if (stream) {
