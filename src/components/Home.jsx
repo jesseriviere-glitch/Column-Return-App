@@ -1,10 +1,11 @@
 import React from 'react';
 import { Plus } from 'lucide-react';
+import logo from '../assets/logo.png';
 
 const Home = ({ onStart }) => {
   return (
     <div className="home-container">
-      <img src="/logo.png" alt="Metafix Logo" className="home-logo" />
+      <img src={logo} alt="Metafix Logo" className="home-logo" />
       <div className="home-content">
         <h2 className="home-title">
           <span className="title-light">COLUMN</span>
