@@ -78,13 +78,6 @@ const Scanner = ({ onSuccess, onCancel, sessionLog }) => {
       if (match) {
         const serialNumber = match[0];
         
-        // Duplicate check
-        if (sessionLog && sessionLog.includes(serialNumber)) {
-          setError("DUPLICATE: ALREADY SCANNED THIS SESSION");
-          setIsProcessing(false);
-          return;
-        }
-
         // Stop stream before success
         if (stream) {
           stream.getTracks().forEach(track => track.stop());

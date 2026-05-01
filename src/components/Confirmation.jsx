@@ -7,10 +7,12 @@ const GOOGLE_SHEET_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzGJBb
 const Confirmation = ({ data, onSuccess, onCancel }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null); // 'success' | 'error' | null
+  const [errorMessage, setErrorMessage] = useState("FAILED TO SUBMIT TO DATABASE. PLEASE TRY AGAIN.");
 
   const handleConfirm = async () => {
     setIsSubmitting(true);
     setSubmitStatus(null);
+    setErrorMessage("FAILED TO SUBMIT TO DATABASE. PLEASE TRY AGAIN.");
     
     // Receipt date automatically generated as current date
     const receiptDate = new Date().toISOString().split('T')[0];
@@ -46,6 +48,9 @@ const Confirmation = ({ data, onSuccess, onCancel }) => {
         setTimeout(onSuccess, 1500); // Wait a moment before returning home
       } else {
         setSubmitStatus('error');
+        if (result.message) {
+          setErrorMessage(result.message);
+        }
         setIsSubmitting(false);
       }
     } catch (error) {
@@ -67,7 +72,7 @@ const Confirmation = ({ data, onSuccess, onCancel }) => {
 
         {submitStatus === 'error' && (
           <div className="error-message">
-            FAILED TO SUBMIT TO DATABASE. PLEASE TRY AGAIN.
+            {errorMessage}
           </div>
         )}
 
